@@ -1,7 +1,6 @@
 package com.appsdeveloperblog.estore.service;
 
 import com.appsdeveloperblog.estore.model.User;
-import com.appsdeveloperblog.estore.service.UserService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -54,6 +53,23 @@ public class UserServiceTest {
         IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, ()-> {
             userService.createUser(firstName, lastName, email, password, repeatPassword);
         },"Empty first name should have caused an Illegal Argument Exception");
+
+        // Assert
+        assertEquals(expectedExceptionMessage,thrown.getMessage(),
+                "Exception error message is not correct");
+    }
+
+    @DisplayName("Empty last name causes correct exception")
+    @Test
+    void testCreateUser_whenLastNameIsEmpty_throwsIllegalArgumentException() {
+        // Arrange
+        String lastName = "";
+        String expectedExceptionMessage = "User's last name is empty";
+
+        // Act & Assert
+        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, ()-> {
+            userService.createUser(firstName, lastName, email, password, repeatPassword);
+        },"Empty last name should have caused an Illegal Argument Exception");
 
         // Assert
         assertEquals(expectedExceptionMessage,thrown.getMessage(),
