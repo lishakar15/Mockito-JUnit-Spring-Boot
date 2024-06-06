@@ -1,6 +1,5 @@
-package com.appsdeveloperblog.estore.service;
-
-import com.appsdeveloperblog.estore.model.User;
+package com.mockito.test.service;
+import com.mockito.test.model.User;
 
 public interface UserService {
     User createUser(String firstName,

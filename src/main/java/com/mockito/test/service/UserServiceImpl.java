@@ -1,6 +1,7 @@
-package com.appsdeveloperblog.estore.service;
+package com.mockito.test.service;
 
-import com.appsdeveloperblog.estore.model.User;
+import com.mockito.test.model.User;
+
 import java.util.UUID;
 
 public class UserServiceImpl implements UserService {

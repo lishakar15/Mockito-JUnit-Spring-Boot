@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.estore.model;
+package com.mockito.test.model;
 
 public class User {
     private String firstName;
