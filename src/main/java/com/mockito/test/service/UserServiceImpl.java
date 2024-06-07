@@ -5,6 +5,15 @@ import com.mockito.test.model.User;
 import java.util.UUID;
 
 public class UserServiceImpl implements UserService {
+    /**
+     * 
+     * @param firstName
+     * @param lastName
+     * @param email
+     * @param password
+     * @param repeatPassword
+     * @return
+     */
     @Override
     public User createUser(String firstName,
                            String lastName,
