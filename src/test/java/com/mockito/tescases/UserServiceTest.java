@@ -53,6 +53,9 @@ public class UserServiceTest {
 
         //Assert
         Assertions.assertEquals(userObj.getFirstName(),firstName); //This will not execute because we returned true
+
+        //Verify the number of times mock method getting called
+        Mockito.verify(userRepository,Mockito.times(1)).saveUser(Mockito.any(User.class));// This is a one seperate testcase
     }
 
 }
