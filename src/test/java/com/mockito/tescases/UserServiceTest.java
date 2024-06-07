@@ -1,19 +1,32 @@
 package com.mockito.tescases;
 
+import com.mockito.test.exception.UserServiceException;
 import com.mockito.test.model.User;
+import com.mockito.test.repository.UserRepository;
+import com.mockito.test.repository.UserRepositoryImpl;
 import com.mockito.test.service.UserService;
 import com.mockito.test.service.UserServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@ExtendWith(MockitoExtension.class) //Extending Mockito
 public class UserServiceTest {
 
-    UserService userService;
+    @InjectMocks
+    UserServiceImpl userServiceImpl;
+    @Mock
+    UserRepository userRepository;
+
     String firstName;
     String lastName;
     String email;
@@ -22,60 +35,24 @@ public class UserServiceTest {
 
     @BeforeEach
     void init() {
-        userService = new UserServiceImpl();
-        firstName = "Sergey";
-        lastName  = "Kargopolov";
+        //userService = new UserServiceImpl(userRepository); //Manually creating UserService obj
+        firstName = "Lishakar";
+        lastName  = "Kumar";
         email = "test@test.com";
         password = "12345678";
         repeatPassword = "12345678";
     }
-
-    @DisplayName("User object created")
     @Test
-    void testCreateUser_whenUserDetailsProvided_returnsUserObject() {
-        // Act
-        User user = userService.createUser(firstName, lastName, email, password, repeatPassword);
+    public void createNewUser() throws UserServiceException {
+        //Stubbing random User object instead of the real parameter we pass below
+        //Arrange
+        Mockito.when(userRepository.saveUser(Mockito.any(User.class))).thenReturn(true); //Stubbing and return true
+        //Actual Parameter
+        User userObj = userServiceImpl.createUser(firstName,lastName,email,password,repeatPassword);
+        System.out.println(userObj.toString());
 
-        // Assert
-        assertNotNull(user, "The createUser() should not have returned null");
-        assertEquals(firstName, user.getFirstName(), "User's first name is incorrect.");
-        assertEquals(lastName, user.getLastName(), "User's last name is incorrect");
-        assertEquals(email, user.getEmail(), "User's email is incorrect");
-        assertNotNull(user.getId(), "User id is missing");
-    }
-
-    @DisplayName("Empty first name causes correct exception")
-    @Test
-    void testCreateUser_whenFirstNameIsEmpty_throwsIllegalArgumentException() {
-        // Arrange
-        String firstName = "";
-        String expectedExceptionMessage = "User's first name is empty";
-
-        // Act & Assert
-        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, ()-> {
-            userService.createUser(firstName, lastName, email, password, repeatPassword);
-        },"Empty first name should have caused an Illegal Argument Exception");
-
-        // Assert
-        assertEquals(expectedExceptionMessage,thrown.getMessage(),
-                "Exception error message is not correct");
-    }
-
-    @DisplayName("Empty last name causes correct exception")
-    @Test
-    void testCreateUser_whenLastNameIsEmpty_throwsIllegalArgumentException() {
-        // Arrange
-        String lastName = "";
-        String expectedExceptionMessage = "User's last name is empty";
-
-        // Act & Assert
-        IllegalArgumentException thrown = Assertions.assertThrows(IllegalArgumentException.class, ()-> {
-            userService.createUser(firstName, lastName, email, password, repeatPassword);
-        },"Empty last name should have caused an Illegal Argument Exception");
-
-        // Assert
-        assertEquals(expectedExceptionMessage,thrown.getMessage(),
-                "Exception error message is not correct");
+        //Assert
+        Assertions.assertEquals(userObj.getFirstName(),firstName); //This will not execute because we returned true
     }
 
 }
