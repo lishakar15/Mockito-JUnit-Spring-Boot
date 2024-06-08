@@ -10,8 +10,11 @@ public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository; //Repository object
 
-    public UserServiceImpl(UserRepository userRepository) {
+    private EmailNotificationService emailNotificationService;
+
+    public UserServiceImpl(UserRepository userRepository,EmailNotificationService emailNotificationService) {
         this.userRepository = userRepository;
+        this.emailNotificationService = emailNotificationService;
     }
 
     public User createUser(String firstName, String lastName, String email, String password,
@@ -26,12 +29,22 @@ public class UserServiceImpl implements UserService {
         }
         //Save User
         User user = new User(firstName, lastName, email, UUID.randomUUID().toString());
-        boolean isUserCreated = userRepository.saveUser(user);
-        if(!isUserCreated)
+        try {
+            boolean isUserCreated = userRepository.saveUser(user);
+            if(!isUserCreated)
+            {
+                throw new UserServiceException("Could not create User");
+            }
+            else
+            {
+                System.out.println("Users created successfully");
+                emailNotificationService.sendEmailToUser(user); //Send email to user
+            }
+        }
+        catch (RuntimeException ex)
         {
-            throw new UserServiceException("Could not create User");
+            throw new UserServiceException("Exception occurred while saving user.");
         }
         return user;
-
     }
 }

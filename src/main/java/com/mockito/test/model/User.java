@@ -12,6 +12,10 @@ public class User {
         this.email = email;
         this.id = id; 
     }
+    public User()
+    {
+
+    }
 
     public String getFirstName() {
         return firstName;
