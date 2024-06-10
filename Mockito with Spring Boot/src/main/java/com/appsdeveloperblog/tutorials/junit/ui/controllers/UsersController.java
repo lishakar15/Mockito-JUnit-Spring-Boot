@@ -24,7 +24,7 @@ public class UsersController {
         this.usersService = usersService;
     }
 
-    @PostMapping
+    @PostMapping("/createUser")
     public UserRest createUser(@RequestBody @Valid UserDetailsRequestModel userDetails) throws Exception {
         ModelMapper modelMapper = new ModelMapper();
         UserDto userDto = new ModelMapper().map(userDetails, UserDto.class);
