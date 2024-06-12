@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.tutorials.junit.io;
+package com.appsdeveloperblog.tutorials.junit.entity;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;

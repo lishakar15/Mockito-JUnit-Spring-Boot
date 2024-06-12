@@ -1,6 +1,6 @@
 package com.appsdeveloperblog.tutorials.junit.security;
 
-import com.appsdeveloperblog.tutorials.junit.io.UsersRepository;
+import com.appsdeveloperblog.tutorials.junit.entity.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;

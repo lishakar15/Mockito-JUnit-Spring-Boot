@@ -1,7 +1,6 @@
 package com.appsdeveloperblog.tutorials.junit.security;
 
-import com.appsdeveloperblog.tutorials.junit.io.UserEntity;
-import com.appsdeveloperblog.tutorials.junit.io.UsersRepository;
+import com.appsdeveloperblog.tutorials.junit.entity.UsersRepository;
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

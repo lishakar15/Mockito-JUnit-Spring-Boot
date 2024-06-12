@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.tutorials.junit.io;
+package com.appsdeveloperblog.tutorials.junit.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,7 +13,7 @@ public class UserEntity implements Serializable {
     @GeneratedValue
     private long id;
 
-    @Column(nullable=false)
+    @Column(nullable=false,unique = true)
     private String userId;
 
     @Column(nullable=false, length=50)
