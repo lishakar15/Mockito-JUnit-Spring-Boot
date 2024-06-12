@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.tutorials.junit.entity;
+package com.appsdeveloperblog.tutorials.junit.datalayer;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

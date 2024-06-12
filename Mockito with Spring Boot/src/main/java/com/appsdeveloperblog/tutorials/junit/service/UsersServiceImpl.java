@@ -1,8 +1,8 @@
 package com.appsdeveloperblog.tutorials.junit.service;
 
 import com.appsdeveloperblog.tutorials.junit.exceptions.UsersServiceException;
-import com.appsdeveloperblog.tutorials.junit.entity.UserEntity;
-import com.appsdeveloperblog.tutorials.junit.entity.UsersRepository;
+import com.appsdeveloperblog.tutorials.junit.datalayer.UserEntity;
+import com.appsdeveloperblog.tutorials.junit.datalayer.UsersRepository;
 import com.appsdeveloperblog.tutorials.junit.shared.UserDto;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;

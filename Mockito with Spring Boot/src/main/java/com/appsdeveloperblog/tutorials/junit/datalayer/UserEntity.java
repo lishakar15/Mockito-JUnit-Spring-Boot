@@ -1,4 +1,4 @@
-package com.appsdeveloperblog.tutorials.junit.entity;
+package com.appsdeveloperblog.tutorials.junit.datalayer;
 
 import javax.persistence.*;
 import java.io.Serializable;
